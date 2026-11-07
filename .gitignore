@@ -1,0 +1,75 @@
+# ============================================================
+# Android .gitignore — JD Salah Azan Qibla
+# ============================================================
+
+# ----- Built application files -----
+*.apk
+*.aab
+*.ap_
+
+# ----- ART / Dalvik VM -----
+*.dex
+
+# ----- Java / Kotlin compiled classes -----
+*.class
+
+# ----- Generated build output -----
+bin/
+gen/
+out/
+build/
+**/build/
+
+# ----- Gradle cache & wrapper -----
+.gradle/
+gradle/wrapper/gradle-wrapper.jar
+
+# ----- Local machine configuration (NEVER commit these) -----
+local.properties
+
+# ----- Keystore / signing files (keep secrets out of VCS) -----
+*.jks
+*.keystore
+keystore.properties
+app/release/output.json
+
+# ----- ProGuard generated mappings -----
+*.map
+
+# ----- Log files -----
+*.log
+
+# ----- Android Studio / IntelliJ IDEA -----
+.idea/
+*.iml
+
+# ----- Android Studio captures & navigation temp files -----
+captures/
+.navigation/
+
+# ----- External native build -----
+.externalNativeBuild/
+.cxx/
+
+# ----- Proguard folder (Eclipse legacy) -----
+proguard/
+
+# ----- Google Services (Firebase) — keep out of VCS if sensitive -----
+google-services.json
+
+# ----- fastlane -----
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots/
+fastlane/test_output/
+fastlane/readme.md
+
+# ----- OS-generated files -----
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
