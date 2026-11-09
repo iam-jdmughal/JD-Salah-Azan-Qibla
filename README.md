@@ -64,8 +64,8 @@ JD Salah integrates the industry-standard Adhan algorithm, offering 10 globally 
 * **Minimum SDK:** Android 7.0 Nougat (API 24)
 * **Target SDK:** Android 16 (API 36)
 * **Release Artifacts:**
-  * **Signed APK:** ~2.7 MB (`JDSalahAzanQibla-release.apk`)
-  * **Play Store AAB:** ~4.3 MB (`JDSalahAzanQibla-release.aab`)
+  * **Signed APK:** ~4.53 MB (`JDSalahAzanQibla-release.apk`)
+  * **Play Store AAB:** ~6.3 MB (`JDSalahAzanQibla-release.aab`)
 
 ---
 
