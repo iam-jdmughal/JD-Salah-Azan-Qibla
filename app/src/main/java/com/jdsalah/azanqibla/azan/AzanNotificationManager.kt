@@ -36,12 +36,12 @@ class AzanNotificationManager(private val context: Context) {
         fun getSoundUri(context: Context, settings: AzanSettings, isFajr: Boolean): Uri {
             val sound = if (isFajr) settings.selectedFajrAdhanSound else settings.selectedAdhanSound
             return when (sound) {
-                AdhanSound.AZAN_1 -> Uri.parse("android.resource://${context.packageName}/raw/azan_1")
-                AdhanSound.AZAN_2 -> Uri.parse("android.resource://${context.packageName}/raw/azan_2")
-                AdhanSound.AZAN_3 -> Uri.parse("android.resource://${context.packageName}/raw/azan_3")
+                AdhanSound.AZAN_1 -> Uri.parse("android.resource://${context.packageName}/${R.raw.azan_1}")
+                AdhanSound.AZAN_2 -> Uri.parse("android.resource://${context.packageName}/${R.raw.azan_2}")
+                AdhanSound.AZAN_3 -> Uri.parse("android.resource://${context.packageName}/${R.raw.azan_3}")
                 AdhanSound.CUSTOM -> {
                     val uriStr = if (isFajr) settings.customFajrAdhanUri else settings.customAdhanUri
-                    if (uriStr != null) Uri.parse(uriStr) else RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+                    if (uriStr != null) Uri.parse(uriStr) else Uri.parse("android.resource://${context.packageName}/${R.raw.azan_1}")
                 }
             }
         }

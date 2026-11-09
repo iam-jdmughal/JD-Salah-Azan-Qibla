@@ -856,22 +856,27 @@ fun AdhanSoundPickerDialog(
                         mediaPlayer = MediaPlayer().apply {
                             setDataSource(context, android.net.Uri.parse(selectedUri))
                             prepare()
-                            start()
                         }
                     } else {
                         android.widget.Toast.makeText(context, "No custom file selected", android.widget.Toast.LENGTH_SHORT).show()
                         return
                     }
                 } else {
-                    val resName = when(sound) {
-                        AdhanSound.AZAN_1 -> "azan_1"
-                        AdhanSound.AZAN_2 -> "azan_2"
-                        AdhanSound.AZAN_3 -> "azan_3"
-                        else -> ""
+                    val resId = when (sound) {
+                        AdhanSound.AZAN_1 -> R.raw.azan_1
+                        AdhanSound.AZAN_2 -> R.raw.azan_2
+                        AdhanSound.AZAN_3 -> R.raw.azan_3
+                        else -> 0
                     }
-                    val resId = context.resources.getIdentifier(resName, "raw", context.packageName)
                     if (resId != 0) {
-                        mediaPlayer = MediaPlayer.create(context, resId)
+                        val afd = context.resources.openRawResourceFd(resId)
+                        if (afd != null) {
+                            mediaPlayer = MediaPlayer().apply {
+                                setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                                afd.close()
+                                prepare()
+                            }
+                        }
                     }
                 }
 
@@ -883,7 +888,7 @@ fun AdhanSoundPickerDialog(
                 mediaPlayer?.start()
                 playingSound = sound
             } catch (e: Exception) {
-                android.widget.Toast.makeText(context, "Error playing audio", android.widget.Toast.LENGTH_SHORT).show()
+                android.widget.Toast.makeText(context, "Error playing audio: ${e.localizedMessage}", android.widget.Toast.LENGTH_SHORT).show()
             }
         }
     }

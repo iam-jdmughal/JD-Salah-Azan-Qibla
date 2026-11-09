@@ -185,7 +185,22 @@ class AzanSoundService : Service() {
                         .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
                         .build()
                 )
-                setDataSource(applicationContext, soundUri)
+                if (soundUri.scheme == "android.resource") {
+                    val resId = soundUri.lastPathSegment?.toIntOrNull()
+                    if (resId != null && resId != 0) {
+                        val afd = resources.openRawResourceFd(resId)
+                        if (afd != null) {
+                            setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                            afd.close()
+                        } else {
+                            setDataSource(applicationContext, soundUri)
+                        }
+                    } else {
+                        setDataSource(applicationContext, soundUri)
+                    }
+                } else {
+                    setDataSource(applicationContext, soundUri)
+                }
                 isLooping = false
                 setOnCompletionListener {
                     stopAzan()
